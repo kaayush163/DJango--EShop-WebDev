@@ -2,3 +2,26 @@
 
 
 we ahve to create app so to amnage different differnt sections like in ecommerse we ahve to amnage stores payments dispaly etc
+
+Go to sqlliteonline.com   https://sqliteonline.com/
+
+powerful website tos ee the table on any database
+
+for creatifnf django username and password write command python manage.py createsuperuser
+Error comes because no databse is created db sqlite (it is empty) so first need to created table to create superuser
+
+
+python manage.py makemigrations
+No changes deteched because notheng operation has done on table
+
+so first run this command 
+python manage.py migrate
+
+now see in sqliteonline.com and select the file dq.sqlite3 will see so many tables has been giving by django
+
+Now run python manage.py createsuperuser
+Username:- 
+Email address:- 
+
+now will see on added to the sqliteonline.com by selecting db.sqlite3 file again now its added
+and go to localhost:8000/admin and now can regeiter in django adminstration easily 
