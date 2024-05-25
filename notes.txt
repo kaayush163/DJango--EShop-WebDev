@@ -1,4 +1,7 @@
 
+Read from here
+https://docs.djangoproject.com/en/5.0/
+
 
 
 we ahve to create app so to amnage different differnt sections like in ecommerse we ahve to amnage stores payments dispaly etc
@@ -25,3 +28,61 @@ Email address:-
 
 now will see on added to the sqliteonline.com by selecting db.sqlite3 file again now its added
 and go to localhost:8000/admin and now can regeiter in django adminstration easily 
+
+
+
+Models creation
+
+Difference between package and directory
+
+models.py remove it from store folder and create package folder "models"
+
+in that create product.py and write code(take helpin from django dicumentation)
+and define different parameters related to product detail but on python mange.py makemigrations still no changes detected because we ahve to write __init__.py also from there it initializes
+
+Importance of __init__.py
+
+
+IMP ISSUES FACED BY MANY
+now write from .product import Product now run makemigrations command now it will give some action
+even if not updating makemigrations then check in Eshop settings INSTALLED_APPS=[] need to add app here like 'store' add here also then that will work
+If still not updating then write this python manage.py makemigrations store
+
+
+
+
+Not: when using image field for uploading image we have to use third party pillow
+
+
+then run python mange.py migrate
+
+
+
+
+
+
+
+Admin not showing product row in url localhost:8000/admin  evn created Models structure weel 
+so for this we ahve to go for store app and in admin.py we ahve to add soem commeands
+
+from django.contrib import admin
+from .models.product import Product
+# Register your models here.
+admin.site.register(Product)
+
+no go back to admin url and there it willbe rpesent and can be ab=vailable to add items now
+
+
+For category again mdoels create file category.py then again run 
+python manage.py makemigrations
+python mange.py migrate
+these two commands always run on every chanegs amde
+
+
+
+
+
+
+
+Foreign Key
+ 
