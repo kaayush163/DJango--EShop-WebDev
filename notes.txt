@@ -105,3 +105,11 @@ so for doing this lets go back to the Eshop->urls.py and add include package imp
 Now request recived printed at terminal but show error at webpage because it not sending any response so for that we do import HTTPRESPONSE in View.py in store app 
 
 from django.http import HttpResponse  add in view.py
+
+
+Serving html page
+create templates folder in store app make one html file and do any heading provide there
+
+Now go to view.py of store app and render     return render(request,'index.html')  this will automatically render through the templates folder to index.html we didnt need to paass the \templates like this this is magic of django it understand the html page render by default at templates folder
+
+
