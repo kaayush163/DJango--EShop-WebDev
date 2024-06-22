@@ -1,5 +1,6 @@
 css 
 if do like this 
+<div class="container-fluid mt-3">  //mt-3 means margin from top
 <div class="row mx-auto">  mx auto gives space between the two adjacent image in row
     <div class="card mx-auto mb-3"> it will show card according rowise
 mb-3 gives bottom space 3 mm
@@ -125,6 +126,11 @@ Now go to view.py of store app and render     return render(request,'index.html'
 
 #Best to read anfd focus more o DJANGO DOCUMENTATION`
 
+
+
+
+
+
 Lecture 12 Adding bootstrap
 
 to get all products from admin/products
@@ -142,3 +148,23 @@ return render(request, 'index.html',{'products':prds}
 
 
 No go to index.html and have to use jinga template passing the key products
+
+
+Lecture 14 adidng navbar and image fixing
+since adding products.image.url still wont work so for that we have to add static MEDIA URL (can read from django documentation) in ESHOP->urls.py
+
+from django.contrib import admin
+from django.urls import path,include
+from django.conf.urls.static import static
+from . import settings
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('store.urls'))
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+now in settings.py we have to add static media url too after adding in urls.py
+add after STATIC_URL line alreayd was present
+MEDIA_URL = '/abcd/' anything you can give(/image/donwload/ isse end users ko pta hi nahi chalega where is images located 
+MEDIA_ROOT = BASE_DIR

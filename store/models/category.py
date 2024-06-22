@@ -2,6 +2,9 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=20)
 
+    @staticmethod
+    def get_all_categories():
+        return Category.objects.all()
     # if dont do thsi then in products category forign detail from category tables it will shwo like this category(1) or category(2) so we have to convrt this aas string
     # def __str__(self):
     #     return "hello"

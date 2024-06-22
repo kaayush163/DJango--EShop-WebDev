@@ -116,8 +116,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+MEDIA_URL = '/images/download/'
+MEDIA_ROOT = BASE_DIR #IT WILL GIVE eSHOB DIRECTORY LOCATION EASILY OTHERWISE CAN DO LIKE THIS ALSO c://lOCAL/uSER....
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
