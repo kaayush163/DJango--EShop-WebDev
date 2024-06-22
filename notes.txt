@@ -1,3 +1,9 @@
+css 
+if do like this 
+<div class="row mx-auto">  mx auto gives space between the two adjacent image in row
+    <div class="card mx-auto mb-3"> it will show card according rowise
+mb-3 gives bottom space 3 mm
+
 
 Read from here
 https://docs.djangoproject.com/en/5.0/
