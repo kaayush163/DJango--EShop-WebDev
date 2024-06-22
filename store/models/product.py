@@ -11,3 +11,7 @@ class Product(models.Model): #now Product is the subclass of Model \
      #category will be new option added in add product
     description = models.CharField(max_length=200,default=' ')
     image=models.ImageField(upload_to='uploads/products/') #where to save image if uploaded
+
+    @staticmethod
+    def get_all_products(): #This method wiill be caleld in view.py
+        return Product.objects.all()

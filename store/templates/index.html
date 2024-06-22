@@ -6,6 +6,19 @@
     <title>E-Shop</title>
 </head>
 <body>
-    <h1>Html File</h1>
+    <!-- <h1>Html File</h1> -->
+    <!-- <h1>{{products}}</h1> -->
+{% for product in products %}
+<!-- <h4>{{product}}</h4> -->
+<table>
+    <tr>
+        <td>{{product.name}}</td>
+        <td>{{product.category.name}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.image}}</td>
+    
+    </tr>
+</table>
+{%endfor%}
 </body>
 </html>

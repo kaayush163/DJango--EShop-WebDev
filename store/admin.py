@@ -7,6 +7,7 @@ from .models.category import Category
 class AdminProduct(admin.ModelAdmin):
     list_display = ['name','price','category'] #whatever defiend in model should be named same here also
 
+#if we dont do thsi category then it will show like this category(1) caetgory(2) not showing the actual category name cloths-men
 class AdminCategory(admin.ModelAdmin):
     list_display = ['name']
 # Register your models here.

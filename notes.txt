@@ -96,20 +96,43 @@ If not working giving some issue best to delete all migrations files except __In
 
 Handling Requests
 
+Lecture 10
+Serving html page
+
 Eshop -> urls.py
 same create in store app urls.py file that url fucntion will be call on view.py of store app
 so add print in view.py but it will still not render on '/' this url of localhost
 
 so for doing this lets go back to the Eshop->urls.py and add include package import (from .... import) and in urlpatters add the path('',include('store.urls'))   //appname.fileyou want to render
 
+jab bhi koi request iss '' path par aaega to yeh pstore app ke urls ko check kargea so then in stroe urls.py which says to run index fucntion now
+
 Now request recived printed at terminal but show error at webpage because it not sending any response so for that we do import HTTPRESPONSE in View.py in store app 
 
 from django.http import HttpResponse  add in view.py
 
 
-Serving html page
 create templates folder in store app make one html file and do any heading provide there
 
 Now go to view.py of store app and render     return render(request,'index.html')  this will automatically render through the templates folder to index.html we didnt need to paass the \templates like this this is magic of django it understand the html page render by default at templates folder
 
 
+#Best to read anfd focus more o DJANGO DOCUMENTATION`
+
+Lecture 12 Adding bootstrap
+
+to get all products from admin/products
+we will go to product.py of astore app
+ and do @staticmethod
+     def get_all_products():
+        return Product.objects.all()
+
+and then in view.py of stroe app 
+from .models.product import Product
+def index(request):
+    prds = Product.get_all_products() 
+    print(products)
+return render(request, 'index.html',{'products':prds}
+
+
+No go to index.html and have to use jinga template passing the key products
