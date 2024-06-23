@@ -150,6 +150,11 @@ return render(request, 'index.html',{'products':prds}
 No go to index.html and have to use jinga template passing the key products
 
 
+
+
+
+
+
 Lecture 14 adidng navbar and image fixing
 since adding products.image.url still wont work so for that we have to add static MEDIA URL (can read from django documentation) in ESHOP->urls.py
 
@@ -168,3 +173,29 @@ now in settings.py we have to add static media url too after adding in urls.py
 add after STATIC_URL line alreayd was present
 MEDIA_URL = '/abcd/' anything you can give(/image/donwload/ isse end users ko pta hi nahi chalega where is images located 
 MEDIA_ROOT = BASE_DIR
+
+always write extends not extend in zinda template
+
+
+
+
+Lecture -17 Get product by id
+Very important do in index.html  <a href="/?category={{category.id}}"
+            class="list-group-item list-group-item-action">{{category.name}}</a>     
+a href use /?category={{category.id}}
+
+
+in view.py add these
+categoryID = request.GET['category'] - X   this will throw error multiDIct Value
+MultiVal key DICT error comes at view.py categoryID = request.GET['category']
+
+categoryID = request.GET.get('category') - OK
+    if categoryID:
+        prds = Product.get_all_products_by_categoryid(categoryID)
+    else:
+        prds = Product.get_all_products()
+
+
+for showing all products we will do in index.html
+<a href="/" class="list-group-item list-group-item-action">All Products</a>
+we have done href="/" because for showing all products we have to be on same home apge

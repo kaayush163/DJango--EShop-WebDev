@@ -15,3 +15,10 @@ class Product(models.Model): #now Product is the subclass of Model \
     @staticmethod
     def get_all_products(): #This method wiill be caleld in view.py
         return Product.objects.all()
+
+    @staticmethod
+    def get_all_products_by_categoryid(category_id):
+        if category_id:
+            return Product.objects.filter(category = category_id)
+        else:
+            return Product.get_all_products()
