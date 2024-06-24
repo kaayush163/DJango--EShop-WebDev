@@ -1,3 +1,9 @@
+write extends instead extend in zinga template
+
+python mange.py makemigrations
+python manage.py migrate
+Wheneev little changes even do make migrations and migrate
+
 css 
 if do like this 
 <div class="container-fluid mt-3">  //mt-3 means margin from top
@@ -199,3 +205,36 @@ categoryID = request.GET.get('category') - OK
 for showing all products we will do in index.html
 <a href="/" class="list-group-item list-group-item-action">All Products</a>
 we have done href="/" because for showing all products we have to be on same home apge
+
+
+
+
+Lecture 18 serving signup page
+for doing that we use view.py and urls.py and created signup.html in templeates these are basic things need to to know at every step
+
+
+Lecture 19customer class creating
+similar in models we create cutoemrs.py adn make class in it and in init.py we import cutomer
+
+and do python mange.py makemigrations
+python manage.py migrate
+
+
+CSRF handled inside form of index.html for form submission donning successfully
+
+
+
+ TO SAVE FORM DATA
+(a) in models-> customer.py we define register fucntion(self): sel.save()
+(b) we can create object in view.py
+
+
+
+
+Lecture 22 Validation of form datas (email,phone,name) done on server side (store app view.py)
+TO show error message we go to signup.html
+{% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}

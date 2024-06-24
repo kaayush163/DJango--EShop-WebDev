@@ -13,9 +13,12 @@
         <a href="/" class="list-group-item list-group-item-action">All Products</a>
 
         {% for category in categories %}
-        <a href="/?category={{category.id}}"
-            class="list-group-item list-group-item-action">{{category.id}}{{category.name}}</a>
-        {% endfor %}
+        <!-- <a href="/?category={{category.id}}"
+            class="list-group-item list-group-item-action">{{category.id}}{{category.name}}</a> -->
+            <a href="/?category={{category.id}}"
+            class="list-group-item list-group-item-action">{{category.name}}</a>
+
+            {% endfor %}
     </div>
 </div>
 
@@ -30,7 +33,7 @@
             <div class="card-body">
             <h5 class="card-title">{{product.name}}</h5>
             <p class="card-text"><b>{{product.price}}</b></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a href="#" class="btn btn-primary">{{product.description}}</a>
             </div>
         </div>
         {%endfor%}
