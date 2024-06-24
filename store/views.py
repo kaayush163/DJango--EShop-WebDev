@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 # Create your views here.
 
@@ -48,8 +48,14 @@ def signup(request):
        email=postData.get('email')
        password=postData.get('password')
        
-       error_message=None
        #validaton
+       value = {
+           'first_name' : first_name,
+           'last_name' : last_name,
+           'phone' :phone,
+           'email' : email
+       }
+       error_message=None
        if not first_name:
            error_message = "First Name Required"
 
@@ -68,7 +74,7 @@ def signup(request):
            error_message = 'Password must be 6 char long'
        elif len(email) < 5:
            error_message = 'Email must be 5 char long'
-           
+
        #saving
        if not error_message:    
             #2nd methid to sve the custoemrs on signup insteda of models->customer.py
@@ -79,8 +85,17 @@ def signup(request):
                                 password=password)
             customer.register()
 
-        
+            # return render(request,'index.html')
+            # return redirect('http://localhost:8000') #this is not a good method
+            # we have to use name in urls.py index 
+
+            return redirect('homepage')
        else:
-           return render(request,'signup.html',{'error':error_message})
+           data = {
+               'error': error_message,
+               'values': value
+           } 
+           return render(request,'signup.html',data)
+        #    return render(request,'signup.html',{'error':error_message})
            
         #    return HttpResponse("Signup success")  #this email we are getting from name from index.html <input name="email"> so here name plays vital role instead of id

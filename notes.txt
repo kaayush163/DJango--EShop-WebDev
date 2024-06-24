@@ -238,3 +238,28 @@ TO show error message we go to signup.html
                     {{error}}
                 </div>
                 {% endif %}
+
+since when erro comes in any form data field it reloads the whole signup.html
+and again have to fill all data
+so for stopping this issue we want to empty only that string whose valuen  is coming incorrect
+value="{{values.last_name}}" add this in signup.html <input value=""> like this this will not allow to make empty other strings when any specific data value string put incorrect
+ 
+
+value = {
+           'first_name' : first_name,
+           'last_name' : last_name,
+           'phone' :phone,
+           'email' : email
+       }
+
+
+data = {
+               'error': error_message,
+               'values': value
+           } 
+
+
+Now again problems comes when on submitting form with fillong values on rendering the page to the index.html
+the categories are not showing so we ahev to redirect('http:localhost:8000') not a goodd method 
+so we paass name in urls.py and redirect(homepage) 
+path('',index,name='homepage') add name='homepage' in urls.py
