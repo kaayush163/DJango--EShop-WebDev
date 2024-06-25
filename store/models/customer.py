@@ -11,7 +11,17 @@ class Customer(models.Model):
 
     def register(self):
         self.save()
+    
+    @staticmethod
+    def get_customer_by_email(self):
+        # return Customer.objects.filter(email = self.email)
+        try:
+            return Customer.objects.get(email=self.email)
+        except:
+            return False
+        # return Customer.objects.get(email = self.email)  # by filter we get list of objects but we want only one object so we use get
 
+    
     def isExists(self):
         if Customer.objects.filter(email = self.email):
             return True
