@@ -298,3 +298,16 @@ from django.contrib.auth.hashers import make_password , check_password
 
 if not error_message:  add this before register
             customer.password = make_password(customer.password)
+
+
+
+
+
+
+Whenever post request we have need of CSRF_token
+
+
+
+
+
+Now for login set url on urls.py
