@@ -269,6 +269,8 @@ path('',index,name='homepage') add name='homepage' in urls.py
 
 
 
+Lecture 26 Email Validation
+
 For email validation to check if no email is already present
 
 
@@ -284,3 +286,15 @@ then in view.py of store app before
 
  elif customer.isExists():
            error_message = 'Email already registered' before       if not error_message
+
+
+
+
+
+
+Lecture 27 password hashing by make_password and then check hased password and input password with help of check_password
+from django.contrib.auth.hashers import make_password , check_password
+
+
+if not error_message:  add this before register
+            customer.password = make_password(customer.password)

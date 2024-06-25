@@ -2,9 +2,16 @@ from django.shortcuts import render , redirect
 from django.http import HttpResponse
 # Create your views here.
 
+from django.contrib.auth.hashers import make_password , check_password
 from .models.product import Product
 from .models.category import Category
 from .models.customer import Customer
+
+
+print(make_password('1234')) #give hashedpassword
+print(check_password('1234','pbkdf2_sha.............')) #give true or false according to the hashed password match with input value passed bu user
+
+
 
 def index(request):
     # print("request recieved")
@@ -88,6 +95,9 @@ def signup(request):
        #saving
        if not error_message:    
             #2nd methid to sve the custoemrs on signup insteda of models->customer.py
+            
+            customer.password = make_password(customer.password)
+            
             customer.register()       
             return redirect('homepage')
             # return render(request,'index.html')
