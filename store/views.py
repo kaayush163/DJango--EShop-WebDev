@@ -56,6 +56,14 @@ def signup(request):
            'email' : email
        }
        error_message=None
+
+       customer = Customer(first_name=first_name,
+                                last_name=last_name,
+                                phone=phone,
+                                email=email,
+                                password=password)
+       
+
        if not first_name:
            error_message = "First Name Required"
 
@@ -75,21 +83,17 @@ def signup(request):
        elif len(email) < 5:
            error_message = 'Email must be 5 char long'
 
+       elif customer.isExists():
+           error_message = 'Email already registered'
        #saving
        if not error_message:    
             #2nd methid to sve the custoemrs on signup insteda of models->customer.py
-            customer = Customer(first_name=first_name,
-                                last_name=last_name,
-                                phone=phone,
-                                email=email,
-                                password=password)
-            customer.register()
-
+            customer.register()       
+            return redirect('homepage')
             # return render(request,'index.html')
             # return redirect('http://localhost:8000') #this is not a good method
             # we have to use name in urls.py index 
 
-            return redirect('homepage')
        else:
            data = {
                'error': error_message,
