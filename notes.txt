@@ -367,3 +367,8 @@ class Login(View): #subclass of login is view class
 
 and add in urs.py
     path('login', Login.as_view())
+
+
+
+Lecture 35 Separated all views function in separate files home,signup,login
+
