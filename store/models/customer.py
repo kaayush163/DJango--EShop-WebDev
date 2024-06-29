@@ -13,10 +13,11 @@ class Customer(models.Model):
         self.save()
     
     @staticmethod
-    def get_customer_by_email(self):
+    def get_customer_by_email(email):
         # return Customer.objects.filter(email = self.email)
         try:
-            return Customer.objects.get(email=self.email)
+            print("checking customers objects",Customer.objects)
+            return Customer.objects.get(email=email)
         except:
             return False
         # return Customer.objects.get(email = self.email)  # by filter we get list of objects but we want only one object so we use get

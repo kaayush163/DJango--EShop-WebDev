@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password , check_password
 from .models.product import Product
 from .models.category import Category
 from .models.customer import Customer
-
+from django.views import View  #importing class
 
 print(make_password('1234')) #give hashedpassword
 print(check_password('1234','pbkdf2_sha.............')) #give true or false according to the hashed password match with input value passed bu user
@@ -38,37 +38,96 @@ def index(request):
     return render(request, 'index.html', data)
 
 
-def validateCustomer(customer):
+# def validateCustomer(customer):
     
-    error_message = None
+#     error_message = None
     
-    if not customer.first_name:
-        error_message = "First Name Required"
+#     if not customer.first_name:
+#         error_message = "First Name Required"
 
-    elif len(customer.first_name)<4:
-        error_message = "First Name must be 4 char long"
-    elif not customer.last_name:
-        error_message = 'Last Name required'
+#     elif len(customer.first_name)<4:
+#         error_message = "First Name must be 4 char long"
+#     elif not customer.last_name:
+#         error_message = 'Last Name required'
 
-    elif len(customer.last_name) < 4:
-        error_message = 'Last Name must be 4 char long or more'
-    elif not customer.phone:
-        error_message = 'Phone number required'
-    elif len(customer.phone) < 10:
-        error_message = 'Phone number must be 10 char long'
-    elif len(customer.password) < 6:
-        error_message = 'Password must be 6 char long'
-    elif len(customer.email) < 5:
-        error_message = 'Email must be 5 char long'
+#     elif len(customer.last_name) < 4:
+#         error_message = 'Last Name must be 4 char long or more'
+#     elif not customer.phone:
+#         error_message = 'Phone number required'
+#     elif len(customer.phone) < 10:
+#         error_message = 'Phone number must be 10 char long'
+#     elif len(customer.password) < 6:
+#         error_message = 'Password must be 6 char long'
+#     elif len(customer.email) < 5:
+#         error_message = 'Email must be 5 char long'
 
-    elif customer.isExists():
-        error_message = 'Email already registered'
-
-
-    return error_message
+#     elif customer.isExists():
+#         error_message = 'Email already registered'
 
 
-def registerUser(request):
+#     return error_message
+
+
+# def registerUser(request):
+#        print(request.POST) #its giving key value 
+#        postData = request.POST
+
+#        first_name=postData.get('firstname')
+#        last_name=postData.get('lastname')
+#        phone=postData.get('phone')
+#        email=postData.get('email')
+#        password=postData.get('password')
+       
+#        #validaton
+#        value = {
+#            'first_name' : first_name,
+#            'last_name' : last_name,
+#            'phone' :phone,
+#            'email' : email
+#        }
+#        error_message=None
+
+#        customer = Customer(first_name=first_name,
+#                                 last_name=last_name,
+#                                 phone=phone,
+#                                 email=email,
+#                                 password=password)
+#        error_message = validateCustomer(customer)
+
+#        #saving
+#        if not error_message:    
+#             #2nd methid to sve the custoemrs on signup insteda of models->customer.py
+            
+#             customer.password = make_password(customer.password)
+            
+#             customer.register()       
+#             return redirect('homepage')
+#             # return render(request,'index.html')
+#             # return redirect('http://localhost:8000') #this is not a good method
+#             # we have to use name in urls.py index 
+
+#        else:
+#            data = {
+#                'error': error_message,
+#                'values': value
+#            } 
+#            return render(request,'signup.html',data)
+
+
+# def signup(request):
+#     if request.method == 'GET':
+#        return render(request,'signup.html')
+    
+#     else:
+#        return registerUser(request)
+#         #    return render(request,'signup.html',{'error':error_message})
+#         #    return HttpResponse("Signup success")  #this email we are getting from name from index.html <input name="email"> so here name plays vital role instead of id
+
+
+class Signup(View):
+    def get(self,request):
+       return render(request,'signup.html')
+    def post(self,request):
        print(request.POST) #its giving key value 
        postData = request.POST
 
@@ -92,7 +151,7 @@ def registerUser(request):
                                 phone=phone,
                                 email=email,
                                 password=password)
-       error_message = validateCustomer(customer)
+       error_message = self.validateCustomer(customer)
 
        #saving
        if not error_message:    
@@ -112,23 +171,43 @@ def registerUser(request):
                'values': value
            } 
            return render(request,'signup.html',data)
-
-
-def signup(request):
-    if request.method == 'GET':
-       return render(request,'signup.html')
     
-    else:
-       return registerUser(request)
-        #    return render(request,'signup.html',{'error':error_message})
-        #    return HttpResponse("Signup success")  #this email we are getting from name from index.html <input name="email"> so here name plays vital role instead of id
+    def validateCustomer(self,customer):
+        error_message = None
+        
+        if not customer.first_name:
+            error_message = "First Name Required"
+
+        elif len(customer.first_name)<4:
+            error_message = "First Name must be 4 char long"
+        elif not customer.last_name:
+            error_message = 'Last Name required'
+
+        elif len(customer.last_name) < 4:
+            error_message = 'Last Name must be 4 char long or more'
+        elif not customer.phone:
+            error_message = 'Phone number required'
+        elif len(customer.phone) < 10:
+            error_message = 'Phone number must be 10 char long'
+        elif len(customer.password) < 6:
+            error_message = 'Password must be 6 char long'
+        elif len(customer.email) < 5:
+            error_message = 'Email must be 5 char long'
+
+        elif customer.isExists():
+            error_message = 'Email already registered'
 
 
+        return error_message
 
-def login(request):
-    if request.method == 'GET':
+class Login(View): #subclass of login is view class
+    def get(self,request):
+        # pass
         return render(request, 'login.html')
-    else:
+
+
+    def post(self,request):
+        #pass  
         email = request.POST.get('email')
         password = request.POST.get('password')
         customer = Customer.get_customer_by_email(email)
@@ -148,5 +227,30 @@ def login(request):
         print(customer)
         print(email,password)
 
-        return render(request, 'login.html',{'error':error_message})
+        return render(request, 'login.html',{'error':error_message}) 
+
+# def login(request):
+#     if request.method == 'GET':
+#         return render(request, 'login.html')
+#     else:
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+#         customer = Customer.get_customer_by_email(email)
+#         error_message = None
+#         if customer:
+#             flag = check_password(password, customer.password)
+
+#             if flag:
+#                 # pass
+#                 return redirect('homepage')
+#             else:
+#                 error_message = 'Email or Password is invalid'
+#         else:
+#             error_message = 'Email or Password is invalid'
+
+        
+#         print(customer)
+#         print(email,password)
+
+#         return render(request, 'login.html',{'error':error_message})
     
