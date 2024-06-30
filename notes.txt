@@ -372,3 +372,25 @@ and add in urs.py
 
 Lecture 35 Separated all views function in separate files home,signup,login
 
+
+
+
+Lecture 36
+Session add in views -> login.py
+                request.session['customer'] = customer but on login type error comes object of type customer is not JSON serilizable
+
+so try to save only email and id in session
+	if flag:
+                request.session['customer_id'] = customer.id
+                request.session['email'] = customer.email
+
+now in home.html
+    print('you are:',request.session.get('email'))  #the login email will show on terminal
+add this after these lines data = {}
+    data['products'] = prds
+    data['categories'] = categories
+
+to check if it works or not try to run localhost:8000 in incognito and there you see the login email will show None
+
+
+

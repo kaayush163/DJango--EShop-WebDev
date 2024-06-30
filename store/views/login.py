@@ -23,6 +23,10 @@ class Login(View): #subclass of login is view class
 
             if flag:
                 # pass
+                # request.session['customer'] = customer
+                request.session['customer_id'] = customer.id
+                request.session['email'] = customer.email
+                                                       
                 return redirect('homepage')
             else:
                 error_message = 'Email or Password is invalid'
