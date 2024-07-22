@@ -1,5 +1,10 @@
 write extends instead extend in zinga template
 
+from django.shortcuts import redirect
+        return redirect('homepage')  #rember instead writing like this redirect("http:localhost:8000") we do by setting name parameter in urls.patterns with the same name as here
+
+{{product | is_in_cart:request.session.cart}} space should not be there between is_in_cart and : and : and request.session.cart
+
 python mange.py makemigrations
 python manage.py migrate
 Wheneev little changes even do make migrations and migrate
@@ -393,4 +398,75 @@ add this after these lines data = {}
 to check if it works or not try to run localhost:8000 in incognito and there you see the login email will show None
 
 
+
+
+
+
+
+
+Lecture 37 - add to cart showing on terminal number of counts of product id in dicytionary format on home.html post method
+
+
+
+
+Lecture 38 Creating filter for carts and products(VERY HRD CONCEPT
+
+Very hard concept comes now FILTER 
+
+first create folder templatetags and file create cart.py
+and write these codes
+
+from django import template
+#this register is a decrator
+register = template.Library()
+
+@register.filter(name='is_in_cart')  # this @ is used for filter decorator    when we use in template then it is called in the below fucntion according matching name this is is use of decrator
+def is_in_cart(product,cart):   #cart is the dictionary having key values defiend home.html 
+    
+    keys= cart.keys()
+
+    print(keys)
+
+    return True
+
+and add {% load cart %} in index.html below block content(this indicate we are adding filter) by doing load filename in templatetags(that is cart
+ and add  {{product | is_in_cart:request.session.cart}} before form and after p tag it will call to the templatetag (take care here space shpuld npot be there between is_in_cart and : and : and request.session.cart  
+product is the value and is_in_cart is the function
+request.session.cart means cart jo hai session mein hai so waha se pass karna hai function is_in_cart mein
+isse cart object mil jaega
+
+
+Now need to write logic cart.py templatetags file that if product is presnet in cart or not
+
+
+(THIS IS THE MOST IMPORTANT THING TO UNDERSTAND)
+<div class="card-footer p-0 no-gutters">
+                
+                {% if product|is_in_cart:request.session.cart %}     -> this is for if condition got true means a particular product already there int he cart
+                <div class="row no-gutters">
+                    <input type="submit" value="-" class="col-2 btn btn-block btn-secondary" >
+                    <div class="text-center col">{{product|cart_quantity:request.session.cart}}</div>       ---->  This filter for displaying how many that particular item is adding when doing + and -
+                    <input type="submit" value="+" class="col-2 btn btn-block btn-secondary" >
+                </div>
+                
+                {% else %}
+                <form action="/" method="POST" class="btn-block" > 
+                    {%csrf_token%}
+                    <input hidden type="text" name="product" value="{{product.id}}">
+                    <input href="#" type="submit" class="float-right btn btn-light border form-control btn-sm" value="Add to Cart">
+                </form>
+                {% endif %}
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+Lecture 39  Increment and decrement button for filter crt add or subtract
 

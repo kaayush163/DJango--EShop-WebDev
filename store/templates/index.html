@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
+<!-- {% load static %} -->
 
 {% block content %}
 
+{% load cart %}
 <div class="container-fluid mt-3">
 	<div class="row">
 
@@ -26,14 +27,37 @@
 <!-- all products -->
 <div id="products" class="col-lg-9 mx-auto">
     <div class="row mx-auto">
-        {% for product in products %}
+        {% for product in products %} 
+        <!-- this product used in 40 line for filter purpose we get product details at templatetags->cart.py -->
         <!-- <h4>{{product}}</h4> -->
         <div class="card mx-auto mb-3" style="width: 18rem;">
             <img src={{product.image.url}} class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text"><b>{{product.price}}</b></p>
-            <a href="#" class="btn btn-primary">{{product.description}}</a>
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text"><b>{{product.price}}</b></p>
+                <!-- <a href="#" class="btn btn-primary">{{product.description}}</a> -->
+                
+                <!-- to check this product is in cart or not so we use request. -->
+                
+            </div>
+            <div class="card-footer p-0 no-gutters">
+                
+                {% if product|is_in_cart:request.session.cart %}
+                <div class="row no-gutters">
+                    <input type="submit" value="-" class="col-2 btn btn-block btn-secondary" >
+                    <div class="text-center col">{{product|cart_quantity:request.session.cart}}</div>
+                    <input type="submit" value="+" class="col-2 btn btn-block btn-secondary" >
+                </div>
+                
+                {% else %}
+                <form action="/" method="POST" class="btn-block" > 
+                    {%csrf_token%}
+                    <!-- current page rende rhoga and method would be POST -->
+                    <input hidden type="text" name="product" value="{{product.id}}">
+                    <!-- <a href="#" type="submit" class="float-right btn btn-light border btn-sm">Add to Cart</a> -->
+                    <input href="#" type="submit" class="float-right btn btn-light border form-control btn-sm" value="Add to Cart">
+                </form>
+                {% endif %}
             </div>
         </div>
         {%endfor%}
