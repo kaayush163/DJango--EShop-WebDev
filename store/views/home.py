@@ -10,14 +10,23 @@ class Index(View):
 
     def post(self, request):
         product = request.POST.get('product')  # this is when we click on add to card same as pass in the name in index.html <input name='product>
+        remove = request.POST.get('remove')
+
         print(product)
+        print(remove)
         cart = request.session.get('cart')
 
         if cart:
             # cart[product] = 1
             quantity = cart.get(product)
             if quantity:
-                cart[product] = quantity+1
+                if remove:
+                    if quantity<=1:
+                        cart.pop(product)
+                    else:
+                        cart[product] = quantity - 1
+                else:
+                    cart[product] = quantity+1
             else:
                 cart[product] = 1
         else:
@@ -28,6 +37,12 @@ class Index(View):
         return redirect('homepage')  #rember instead writing like this redirect("http:localhost:8000") we do by setting name parameter in urls.patterns with the same name as here
         
     def get(self,request):
+
+        cart = request.session.get('cart')
+        
+        if not cart:
+            request.session['cart'] = {}
+        
         prds = None
         # request.session.clear()   #this will clear login of user details session also so we have to only clear cart deatils objects only
         #request.session.get('cart').clear()

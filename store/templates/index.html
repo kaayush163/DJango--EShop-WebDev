@@ -30,7 +30,7 @@
         {% for product in products %} 
         <!-- this product used in 40 line for filter purpose we get product details at templatetags->cart.py -->
         <!-- <h4>{{product}}</h4> -->
-        <div class="card mx-auto mb-3" style="width: 18rem;">
+        <div class="card mx-auto mb-3" id={{product.id}} style="width: 18rem;">
             <img src={{product.image.url}} class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
@@ -44,13 +44,27 @@
                 
                 {% if product|is_in_cart:request.session.cart %}
                 <div class="row no-gutters">
-                    <input type="submit" value="-" class="col-2 btn btn-block btn-secondary" >
+                    <!-- <input type="submit" value="-" class="col-2 btn btn-block btn-secondary" > -->
+                    <form action="/#{{product.id}}" class="col-2" method="post" >
+                        {%csrf_token%}
+                        <input hidden type="text" name="product" value="{{product.id}}">
+                        <input hidden type="text" name="remove" value="-1">  <!-- this is how we showing under the cart footer  -->
+
+                        <input type="submit" value="-" class="btn btn-block btn-secondary" >
+                    </form>
+
                     <div class="text-center col">{{product|cart_quantity:request.session.cart}}</div>
-                    <input type="submit" value="+" class="col-2 btn btn-block btn-secondary" >
+
+                    <!-- <input type="submit" value="+" class="col-2 btn btn-block btn-secondary" > -->
+                    <form action="/#{{product.id}}" class="col-2" method="post" >
+                        {%csrf_token%}
+                        <input hidden type="text" name="product" value="{{product.id}}">
+                        <input type="submit" value="+" class="btn btn-block btn-secondary" >
+                    </form>
                 </div>
                 
                 {% else %}
-                <form action="/" method="POST" class="btn-block" > 
+                <form action="/#{{product.id}}" method="POST" class="btn-block" > 
                     {%csrf_token%}
                     <!-- current page rende rhoga and method would be POST -->
                     <input hidden type="text" name="product" value="{{product.id}}">
@@ -66,6 +80,18 @@
 
 </div>
 </div>
+
+
+<!-- <div class="jumbotron" id="abc">
+    <h1 class="display-3">Jumbo heading</h1>
+    <p class="lead">Jumbo helper text</p>
+    <hr class="my-2">
+    <p>More info</p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Jumbo action name</a>
+    </p>
+</div> -->
+
 {% endblock %} 
 
     <!-- <h1>Html File</h1> -->

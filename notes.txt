@@ -470,3 +470,13 @@ Now need to write logic cart.py templatetags file that if product is presnet in 
 
 Lecture 39  Increment and decrement button for filter crt add or subtract
 
+VERY HARD VERY HARD PLS REVISE THIS VIDEO SO MUCH CHANGES HAVE BEEN DONE AND SO MUH TO UNDERSTAND
+
+
+
+
+Lecture 40 we have to navigate to the same product without reloading the page comes at the top
+
+we can use #id concept like we do in reactjs
+
+we do jumbo template use
