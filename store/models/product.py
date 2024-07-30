@@ -13,6 +13,13 @@ class Product(models.Model): #now Product is the subclass of Model \
     image=models.ImageField(upload_to='uploads/products/') #where to save image if uploaded
 
     @staticmethod
+    def get_products_by_id(ids):  #we passed the list of ids in this 
+        # return Product.objects.filter(id==1) #if one id
+        # return Product.objects.filter(id__in=[1,2,6]) #if so many product put in carts
+        return Product.objects.filter(id__in=ids)
+    
+
+    @staticmethod
     def get_all_products(): #This method wiill be caleld in view.py
         return Product.objects.all()
 

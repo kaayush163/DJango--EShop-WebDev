@@ -24,8 +24,8 @@ class Login(View): #subclass of login is view class
             if flag:
                 # pass
                 # request.session['customer'] = customer
-                request.session['customer_id'] = customer.id
-                request.session['email'] = customer.email
+                request.session['customer'] = customer.id
+                # request.session['email'] = customer.email   no need customed id is enough as it is also unique
                                                        
                 return redirect('homepage')
             else:
@@ -38,3 +38,11 @@ class Login(View): #subclass of login is view class
         print(email,password)
 
         return render(request, 'login.html',{'error':error_message}) 
+
+
+def logout(request):
+    #sesison ko clearnkarna this is logout logic
+
+    request.session.clear()
+
+    return redirect('login')  #this login reads from name='login' of urls.py

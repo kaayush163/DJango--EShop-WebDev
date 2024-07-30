@@ -472,6 +472,9 @@ Lecture 39  Increment and decrement button for filter crt add or subtract
 
 VERY HARD VERY HARD PLS REVISE THIS VIDEO SO MUCH CHANGES HAVE BEEN DONE AND SO MUH TO UNDERSTAND
 
+so much changes of cretingg form for + nd - in index.html and then home.py write logic for quantity-1 and quantity+1 on if elsecondition
+
+
 
 
 
@@ -480,3 +483,51 @@ Lecture 40 we have to navigate to the same product without reloading the page co
 we can use #id concept like we do in reactjs
 
 we do jumbo template use
+
+
+
+
+
+
+
+
+Lecture 41  we are doing hiding login and signup (becoz generally when user login in a website the login and signup dont show up more it vanishes
+
+                request.session['customer'] = customer.id  do it in login.py
+
+and go to now base.html   
+              
+ </li>
+        {% if request.session.customer %}
+        
+        <li class="nav-item ">
+          <a class="nav-link" href="/orders">Orders<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/logout">Logout<span class="sr-only">(current)</span></a>
+        </li>
+        {% else %}
+       
+        <li class="nav-item ">
+          <a class="nav-link" href="/signup">Signup<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+        </li>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+lecture 42 logout implemet
+
+
+
+
+
+Leecture 43 Cart implemt with cart.html,cart.py,urls.py
