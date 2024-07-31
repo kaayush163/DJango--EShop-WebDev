@@ -1,3 +1,6 @@
+We can't do multiplication,subtraction, addition in template zinga
+
+
 write extends instead extend in zinga template
 
 from django.shortcuts import redirect
@@ -526,8 +529,57 @@ and go to now base.html
 
 lecture 42 logout implemet
 
+write below login these commands in login.py in views folder
+def logout(request):
+    #sesison ko clearnkarna this is logout logic
+
+    request.session.clear()
+
+    return redirect('login')
+
+
+add urls.py this commands
+from .views.login import logout
+path('logout',logout, name='logout'),
+
+
 
 
 
 
 Leecture 43 Cart implemt with cart.html,cart.py,urls.py
+
+add logic for getting cart items by product.id
+add @register.filter(name='is_in_cart')
+def is_in_cart(product,cart):
+
+
+cart.html
+
+
+make cart class in file cart.py in views
+class Cart(View): #subclass of login is view class
+    def get(self,request):
+        # pass
+
+        #print(request.session.cart) - this is wrong
+        print(request.session.get('cart')) #this is correct
+                                           #{'1':1, '2':1 } '1' is product id is showing we need that so 
+
+        print(request.session.get('cart').keys()) #so we get product id in dictionary list
+        
+        ids = list(request.session.get('cart').keys())
+        products = Product.get_products_by_id(ids)
+        print(products)
+        return render(request, 'cart.html')
+
+
+
+
+
+
+
+
+Lecture 44 Cart items need to displayed 
+
+
