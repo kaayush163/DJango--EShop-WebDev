@@ -1,6 +1,10 @@
 We can't do multiplication,subtraction, addition in template zinga
 
 
+FILTER BIGGEST USE IS EXPLANED VIDEO 49 that instead of changing money sign Rs. (by going in every table ) instead of this we change directly to filter template tags one line an can be changed to wherever it is used int he table with money sign
+
+
+
 write extends instead extend in zinga template
 
 from django.shortcuts import redirect
@@ -579,7 +583,10 @@ class Cart(View): #subclass of login is view class
 
 
 
-
 Lecture 44 Cart items need to displayed 
 
 
+
+
+
+lecture 45 

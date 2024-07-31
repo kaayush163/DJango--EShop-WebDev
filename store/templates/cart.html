@@ -3,7 +3,7 @@
 
 {% block content %}
 {% load cart %}
-
+{% load custom_filter %}
 <div class="container">
    <div class="border rounded p-4 m-4">
         <p class="display-4 pl-4 ml-4">Your Cart</p>
@@ -28,10 +28,10 @@
                     <!-- <td>{{product.image.url}}</td> -->
                     <td><img style="height: 80px;" class="rounded-circle" src="{{product.image.url}}" alt=""></td>
                     <td>{{product.name}}</td>
-                    <td>{{product.price}}</td>
-                    <td>{{product|cart_quantity:request.session.cart}}</td> 
+                    <td>{{product.price|currency}}</td>
+                    <td>{{product|cart_quantity:request.session.cart|currency}}</td> 
                     <!-- created a filter so when product individual item send to cart.py then cart_quantity should be same sa sname  in cart.py used from there we get the request.session.cart object -->
-                    <td>{{product|price_total:request.session.cart}}</td>
+                    <td>{{product|price_total:request.session.cart|currency}}</td>
                 </tr>
 
                 {% endfor %}
@@ -42,7 +42,7 @@
                 <tr>
                     <th colspan="4"></th>
                     <th class="" colspan="">Total</th>
-                    <th>{{products|total_cart_price:request.session.cart}}</th>
+                    <th>{{products|total_cart_price:request.session.cart|currency}}</th>
                     <!-- int his one product is not passed but the whole list products is passed -->
                 </tr>
             </tfoot>
