@@ -3,6 +3,8 @@ We can't do multiplication,subtraction, addition in template zinga
 
 FILTER BIGGEST USE IS EXPLANED VIDEO 49 that instead of changing money sign Rs. (by going in every table ) instead of this we change directly to filter template tags one line an can be changed to wherever it is used int he table with money sign
 
+admin-aayush
+password = 123
 
 
 write extends instead extend in zinga template
@@ -590,3 +592,52 @@ Lecture 44 Cart items need to displayed
 
 
 lecture 45 
+
+
+
+
+Lecture 49 currency filter
+
+
+{% load custom_filter %} at top of cart.html and wherever you use currency like in index.html also put this on top
+                <p class="card-text"><b>{{product.price|currency}}</b></p> in index.html 34 line
+
+
+cart.html and custom_filter.py instead of changing any dolalr sign and rupees sin in html better to do in filter file directly oin one place only this is the biggest use of filter 
+
+
+
+
+
+
+
+
+
+
+
+Lecture 50 order 
+
+create order.py in models and add in __init__.py for orders too
+then come  admin.py and add for order 
+
+by this we can add in admin of localhost:8000 
+
+go to localhost:8000/admin
+
+
+
+
+
+
+
+
+
+Lecture 51 Model
+
+cart.html last part adding model
+
+<!-- modal -->
+ <!-- we commented this below becoz we want to open modal form on checkout button not on this bootstrap button -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
