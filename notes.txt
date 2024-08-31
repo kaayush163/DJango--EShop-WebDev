@@ -636,8 +636,26 @@ Lecture 51 Model
 
 cart.html last part adding model
 
+
+<div class="m-3 p-3">
+            <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info border rounded  col-lg-3 float-right">Check out</a>  
+
+this exampleModal dshould be same as modal id 
+        </div>
+
+
+
 <!-- modal -->
  <!-- we commented this below becoz we want to open modal form on checkout button not on this bootstrap button -->
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button> -->
+
+
+
+
+
+lecture 52 place order
+checkout same gp to urls.py and fll urls pattern
+and then in views doc heckout.py and write class in it 
+then for orders create models got o model and orders .py create

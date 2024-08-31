@@ -7,7 +7,7 @@ from .views.home import Index #class import
 from .views.signup import Signup
 from .views.login import Login, logout
 from .views.cart import Cart  #Cart class we want to acess here
-
+from .views.checkout import CheckOut
 
 
 urlpatterns = [
@@ -19,14 +19,14 @@ urlpatterns = [
     # path('login', login)
     #path('login', Login.as_view())  #for calling class in views.py
 
-# path('',home.index,name='homepage' ),
-# path('signup',signup.Signup.as_view(), name = 'signup' ),
-# path('login',login.Login.as_view(), name='login')
+    # path('',home.index,name='homepage' ),
+    # path('signup',signup.Signup.as_view(), name = 'signup' ),
+    # path('login',login.Login.as_view(), name='login')
 
-path('',Index.as_view(),name='homepage' ),
-path('signup',Signup.as_view(), name = 'signup' ),
-path('login',Login.as_view(), name='login'),
-path('logout',logout, name='logout'),
-path('cart',Cart.as_view(), name='cart')
-
+    path('',Index.as_view(),name='homepage' ),
+    path('signup',Signup.as_view(), name = 'signup' ),
+    path('login',Login.as_view(), name='login'),
+    path('logout',logout, name='logout'),
+    path('cart',Cart.as_view(), name='cart'),
+    path('check-out',CheckOut.as_view(),name='checkout'), #we use as as_view when we defiend as class in views/chekout.py
 ]
