@@ -659,3 +659,8 @@ lecture 52 place order
 checkout same gp to urls.py and fll urls pattern
 and then in views doc heckout.py and write class in it 
 then for orders create models got o model and orders .py create
+
+order.html copy contentsd of customer.html to it and delete some things like footer and 
+make sure class name and models table name should not be same that why ii write class name OrderView and model name is Order
+
+in orders.html write loop for orders(taken from OrderView cklass

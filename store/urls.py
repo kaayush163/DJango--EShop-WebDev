@@ -8,7 +8,7 @@ from .views.signup import Signup
 from .views.login import Login, logout
 from .views.cart import Cart  #Cart class we want to acess here
 from .views.checkout import CheckOut
-
+from .views.orders import OrderView
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -29,4 +29,6 @@ urlpatterns = [
     path('logout',logout, name='logout'),
     path('cart',Cart.as_view(), name='cart'),
     path('check-out',CheckOut.as_view(),name='checkout'), #we use as as_view when we defiend as class in views/chekout.py
+    path('orders',OrderView.as_view(),name='orders'), #we use as as_view when we defiend as class in views/chekout.py
+
 ]
