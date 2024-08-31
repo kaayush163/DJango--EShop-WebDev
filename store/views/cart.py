@@ -15,7 +15,7 @@ class Cart(View): #subclass of login is view class
         print(request.session.get('cart')) #this is correct
                                            #{'1':1, '2':1 } '1' is product id is showing we need that so 
 
-        print(request.session.get('cart').keys()) #so we get product id in dictionary list
+        # print(request.session.get('cart').keys()) #so we get product id in dictionary list
         
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_id(ids)

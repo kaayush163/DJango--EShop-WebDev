@@ -711,3 +711,10 @@ so instead of only passing auth_middleware we pass like this
 
 But the bigger problem if one want to use middleare in more things then it will be hectic to write above every method inside classs
 
+
+
+
+#55 video see again if doubt
+Lecture 54b Very IMP logic if again want to logic so it should be on same page let say orders as it was on previou time
+
+RETURN URL short concept but V IMP FOr PROFESSIONAL LOOK OF WEBPAGE
