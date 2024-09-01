@@ -699,7 +699,8 @@ we use decrotator in orders.py of views.py
 from store.middlewares.auth import auth_middleware #we use this when there is funnction meqans outside of class inisde of class it is called method not function so we cant not use it instead we use below one
 
 class OrderView(View):
-    @auth_middleware
+    # @auth_middleware
+    @method_decorator(auth_middleware)
     def get(self,request):
         customer = request.session.get('customer')
         orders = Order.get_orders_by_customer(customer)
@@ -710,7 +711,7 @@ so instead of only passing auth_middleware we pass like this
 
 
 But the bigger problem if one want to use middleare in more things then it will be hectic to write above every method inside classs
-
+so for that we would use auth_middleware in urls.py file 
 
 
 
